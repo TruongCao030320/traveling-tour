@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connectToDb } from "./src/utils/db_connection/connection";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import tourRouter from "./src/routes/tour.js";
 import reviewRouter from "./src/routes/review.js";
@@ -10,6 +11,7 @@ const PORT = 8088;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cookieParser());
 connectToDb();
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/reviews", reviewRouter);
